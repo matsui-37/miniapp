@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Miniapp</title>
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+<nav class="##84ffff cyan accent-1 ">
+  <div class="nav-wrapper">
+    <a href="/"><span class="center brand-logo">Blog</span></a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <div class="grid-6"><a href="/"></a></h1>
+      <% if user_signed_in? %>
+        <div class="user_nav grid-6">
+            <ul class="user__info">
+                <li><a href="/users/<%= current_user.id %>"><%= current_user.nickname %></a></li>
+                <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+                <li><a class="post" href="/tweets/new">New</a></li>
+            </ul>
+          </span>
+        </div>
+      <% else %>
+        <div class="grid-6">
+          <li><%= link_to "Login", new_user_session_path, class: 'post' %></li>
+          <li><%= link_to "Registration", new_user_registration_path, class: 'post' %></li>
+        </div>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+<%= yield %>
+
+</body>
+</html>
